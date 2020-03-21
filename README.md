@@ -1,37 +1,43 @@
-## Welcome to GitHub Pages
+# Compatibility #
+Histogramer has tested using `python 3.6.8` virtual environment in:
+   * Windows 10 OS
+   * macOS Catalina
 
-You can use the [editor on GitHub](https://github.com/jim-molecule/histogramer/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+# Description #
+This tool analyze text files in a directory (which was specified by user) 
+and it's sub folders. Statistics by words count is gathering 
+for each text file was found. Then a histogram will be building 
+by this statistics.
+  
+ # Example #
+![](examples/histogram.png)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# Installation #
+* #### Using a `*.whl` dist: ####
+   * Download the latest `*.whl` version from a
+   [releases page](https://github.com/jim-molecule/histogramer/releases)
+   * Install histogramer: `pip3 install --upgrade path_to_wheel.whl`
 
-### Markdown
+* #### Using sources: ####
+   * Remove dist files from project root:
+      * Windows: `RMDIR /Q/S build dist histogramer.egg-info`
+      * Mac: `rm -r build dist histogramer.egg-info`
+   * Install wheel: `pip3 install wheel`
+   * Build dist: `python setup.py bdist_wheel`
+   * Install histogramer: `pip3 install --upgrade path_to_wheel.whl`
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+# Issues #
+Please, report about any issues to an 
+[issues page](https://github.com/jim-molecule/histogramer/issues/new/choose)
+with `~/.logs` folder's files attached.
 
-```markdown
-Syntax highlighted code block
+# Testing #
+For run all tests, please, use `pytest ./histogramer/tests` from project root.
+Pytest options are placed in `~/histogramer/tests/pytest.ini` file.
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/jim-molecule/histogramer/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+# Usage #
+Run a `python -m histogramer --help` script.
+ 
+# Virtual environment #
+For main usage `~/requirements_main.txt` should be installed.
+For testing: `~/requirements_tests.txt`.
