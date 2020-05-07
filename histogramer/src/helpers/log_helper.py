@@ -19,10 +19,9 @@ def _add_rotating_file_handler(folder_name, logger, log_formatter, root_path):
     """
     path = os.path.join(root_path, folder_name)
     file_name = os.path.join(path, ".histogramer")
-    {True: lambda: shutil.rmtree(path, ignore_errors=True)}.get(
-        os.path.isdir(file_name)
-        and Path(file_name).stat().st_size >= 5 * (1024 ** 2),
-        lambda: None)()
+    if os.path.isdir(file_name) and Path(file_name).stat().st_size >= 5 * (1024 ** 2):
+        shutil.rmtree(path, ignore_errors=True)
+
     # create folder for file logs if not exists
     Path(path).mkdir(parents=True, exist_ok=True)
 
@@ -51,10 +50,9 @@ async def init_logger(folder_name, root_path):
     console_handler.setLevel(level=logging.ERROR)
     logger.addHandler(hdlr=console_handler)
 
-    {"0": lambda: None}.get(
-        root_path,
-        lambda: _add_rotating_file_handler(folder_name,
-                                           logger,
-                                           log_formatter,
-                                           root_path))()
+    if root_path != "0":
+        _add_rotating_file_handler(folder_name,
+                                   logger,
+                                   log_formatter,
+                                   root_path)
     return logger

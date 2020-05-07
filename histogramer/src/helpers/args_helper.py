@@ -20,8 +20,8 @@ def get_dir_type(path):
     :param path: Directory which should exists.
     :return: Path or NotADirectoryError if directory not exists.
     """
-    {False: lambda: __raise_error(path)}.get(
-        os.path.isdir(path) or path == "0", lambda: None)()
+    if os.path.isdir(path) is False and path != "0":
+        __raise_error(path)
     return path
 
 

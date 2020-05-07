@@ -55,9 +55,10 @@ async def process_text_files(extension, logger, path):
             words_count = []
             for result in pool.imap_unordered(_count_words,
                                               Path(path).rglob(extension)):
-                {True: lambda r=result: logger.warning(r),
-                 False: lambda r=result: words_count.append(r)
-                 }.get(isinstance(result, str), lambda: None)()
+                if isinstance(result, str):
+                    logger.warning(result)
+                else:
+                    words_count.append(result)
                 spinner.text = f"{len(words_count)} files processed"
         end_time = datetime.utcnow()
         spinner.succeed(f"[{await datetime_to_str(end_time)}] "
@@ -75,8 +76,8 @@ async def show_histogram(logger, words_count):
     in the file.
     :return: None.
     """
-    {True: lambda: _exit_if_empty_data(logger)}.get(
-        len(words_count) == 0, lambda: None)()
+    if len(words_count) == 0:
+        _exit_if_empty_data(logger)
 
     start_time = datetime.utcnow()
     message = f"[{await datetime_to_str(start_time)}] Building histogram..."

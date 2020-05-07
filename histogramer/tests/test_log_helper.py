@@ -28,10 +28,10 @@ async def _remove_dirs_tree(logger, path):
     :param path: Root directory.
     :return: None.
     """
-    {True: lambda: __close_logger_handlers(logger)}.get(
-        logger is not None, lambda: None)()
-    {True: lambda: shutil.rmtree(path, ignore_errors=True)}.get(
-        os.path.isdir(path), lambda: None)()
+    if logger is not None:
+        __close_logger_handlers(logger)
+    if os.path.isdir(path):
+        shutil.rmtree(path, ignore_errors=True)
 
 
 @pytest.mark.log_helper

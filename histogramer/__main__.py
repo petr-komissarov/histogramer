@@ -19,4 +19,5 @@ async def main():
     await show_histogram(logger, words_count)
 
 
-{"__main__": lambda: asyncio.run(main())}.get(__name__, lambda: None)()
+if __name__ == "__main__":
+    asyncio.run(main())
