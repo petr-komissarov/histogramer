@@ -5,6 +5,7 @@
       <w>apipkg</w>
       <w>asctime</w>
       <w>asyncio</w>
+      <w>atomicwrites</w>
       <w>colorama</w>
       <w>cycler</w>
       <w>dateutil</w>
