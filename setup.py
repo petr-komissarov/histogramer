@@ -16,9 +16,9 @@ def read_file(file_name):
 
 setuptools.setup(
     name="histogramer",
-    version="1.0.6",
+    version="1.0.7",
     author="Petr Komissarov",
-    author_email="jim.molecule@gmail.com",
+    author_email="job.komissarov@gmail.com",
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent"],
@@ -27,6 +27,6 @@ setuptools.setup(
     long_description=read_file("README.md"),
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(exclude=["*tests"]),
-    python_requires=">=3.6",
+    python_requires=">=3.9",
     tests_require=read_file("requirements_tests.txt"),
-    url="https://github.com/jim-molecule/histogramer")
+    url="https://github.com/petr-komissarov/histogramer")
